@@ -137,11 +137,12 @@ p { margin: 0; }
 }
 
 /* ---------- Hero ---------- */
-.hero { padding: 64px 0 80px; }
+.hero { padding: clamp(64px, 5vw, 96px) 0 clamp(96px, 8vw, 150px); }
 .hero-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 48px; }
 .hero-copy { flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
 .hero-kicker { font-size: 28px; color: var(--red); }
 .hero h1 { font-size: clamp(40px, 6vw, 64px); line-height: 1.02; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
+.hero h1 .h1-short { display: none; }
 .lead { font-size: 20px; color: var(--ink); max-width: 540px; }
 .hero .btn-row { padding-top: 6px; }
 .hero-logo { flex: 1 1 360px; min-width: 0; display: flex; justify-content: center; }
@@ -175,22 +176,40 @@ p { margin: 0; }
 }
 
 /* ---------- Services (Option C: polka dot border) ---------- */
+/* The frame is exactly one dot tile thick, and `round` stretches the tile slightly so a whole
+   number of dots fits across and down at any size: one centred row of dots on every edge. */
 .services {
+  --dot-tile: 26px;
+  --dot-size: 4px;
   color: var(--white);
-  padding: 22px;
+  padding: var(--dot-tile);
   border-top: var(--outline);
   border-bottom: var(--outline);
+  background-image: radial-gradient(circle, rgba(255,255,255,.9) var(--dot-size), transparent calc(var(--dot-size) + .5px));
+  background-size: var(--dot-tile) var(--dot-tile);
+  background-repeat: round;
 }
 .services-panel {
   border: var(--outline);
   border-radius: 18px;
-  padding: 84px 0;
+  padding: clamp(84px, 8vw, 136px) 0;
 }
-.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+.services .wrap { max-width: 1360px; }
+.services .section-head { gap: 12px; margin-bottom: clamp(40px, 4.5vw, 72px); }
+.services-intro { max-width: 600px; color: var(--footer-text); font-size: 18px; margin-top: 6px; }
+.card-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(24px, 2.4vw, 36px); }
+.services-cta {
+  margin-top: clamp(48px, 5vw, 80px);
+  display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center;
+}
+.services-cta p { color: var(--footer-text); font-size: 18px; max-width: 560px; }
+.services-cta .btn-row { justify-content: center; }
+@media (max-width: 1100px) { .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .card-grid { grid-template-columns: minmax(0, 1fr); } }
 .service-card {
   background: var(--cream); color: var(--black);
   border: var(--outline); border-radius: var(--radius);
-  padding: 28px; display: flex; flex-direction: column; gap: 10px;
+  padding: 32px 28px; display: flex; flex-direction: column; gap: 12px;
   box-shadow: 6px 6px 0 var(--red);
   transition: transform .2s ease, box-shadow .2s ease;
 }
@@ -198,20 +217,37 @@ p { margin: 0; }
 .service-card h3 { font-size: 24px; font-weight: 800; }
 .service-card p { color: var(--ink); font-size: 16px; flex: 1; }
 .service-card .price {
-  flex: none; align-self: flex-start;
+  flex: none; align-self: flex-start; margin-top: 10px;
   background: var(--black); color: var(--white);
   font-weight: 800; font-size: 17px; padding: 6px 14px; border-radius: 999px;
 }
 
 /* ---------- Before & After ---------- */
-#before-after .section-title { margin-bottom: 32px; }
+#before-after .section-title { margin-bottom: 10px; }
 .amp { text-transform: none; color: var(--red); font-size: .87em; }
-.photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
-.photo-placeholder {
-  height: 260px; border: 3px dashed var(--black); border-radius: var(--radius);
-  display: flex; align-items: center; justify-content: center;
-  background: var(--white); color: var(--ink); font-size: 16px;
+.ba-intro { color: var(--ink); margin-bottom: 32px; }
+.ba-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+.ba-pair {
+  margin: 0; background: var(--white); border: var(--outline); border-radius: var(--radius-lg);
+  box-shadow: 8px 8px 0 var(--red); padding: 16px;
+  display: flex; flex-direction: column; gap: 16px;
 }
+.ba-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ba-shot { position: relative; margin: 0; }
+.ba-shot img {
+  width: 100%; aspect-ratio: 4 / 5; object-fit: cover;
+  border: var(--outline); border-radius: var(--radius);
+}
+.ba-tag {
+  position: absolute; left: 10px; top: 10px;
+  background: var(--black); color: var(--white); border: 2px solid var(--black);
+  font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 999px;
+}
+.ba-tag-after { background: var(--red); }
+.ba-pair figcaption { padding: 0 6px 4px; color: var(--ink); font-size: 16px; }
+.ba-pair figcaption strong { display: block; color: var(--black); font-size: 20px; font-weight: 800; margin-bottom: 2px; }
+@media (max-width: 900px) { .ba-grid { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- Meet Shannon ---------- */
 .about-card {
@@ -246,6 +282,7 @@ p { margin: 0; }
   width: 150px; height: 150px; background: var(--white); border: var(--outline); border-radius: var(--radius-sm);
   display: flex; align-items: center; justify-content: center; padding: 10px; color: var(--ink); font-size: 14px;
 }
+.qr-placeholder img { width: 100%; height: auto; image-rendering: pixelated; }
 .pill { background: var(--black); color: var(--white); font-size: 15px; font-weight: 700; padding: 6px 14px; border-radius: 999px; }
 
 /* ---------- Quote ---------- */
@@ -375,15 +412,37 @@ p { margin: 0; }
   .brand img { height: 48px; }
   .header-actions .btn-sm { padding: 8px 14px; font-size: 15px; }
   .hero { padding: 40px 0 56px; }
+  .hero h1 .h1-full { display: none; }
+  .hero h1 .h1-short { display: inline; }
   .hero-logo img { width: 280px; }
-  .services { padding: 12px; }
+  .services { --dot-tile: 18px; --dot-size: 3px; }
   .services-panel { padding: 56px 0; }
   .about-card { padding: 28px; gap: 32px; }
   .about-photo { height: 380px; }
   .quote-form { padding: 22px; }
   .thanks { padding-top: 48px; }
   .thanks-card { padding: 28px 22px; }
-  .footer-bar-inner { flex-direction: column; }
+  .footer-bar-inner { flex-direction: column; align-items: center; text-align: center; }
+
+  /* Centre content on mobile (form fields and thank-you steps stay left-aligned for readability) */
+  .main-nav a { text-align: center; }
+  .btn-row { justify-content: center; }
+  .hero-copy { align-items: center; text-align: center; }
+  .lead { margin: 0 auto; }
+  .service-card { align-items: center; text-align: center; }
+  .service-card .price { align-self: center; }
+  #before-after .section-title { text-align: center; }
+  .about-card { justify-content: center; }
+  .about-copy { align-items: center; text-align: center; }
+  .section-head.split { flex-direction: column; align-items: center; text-align: center; }
+  .review-card { align-items: center; text-align: center; }
+  .quote-copy { align-items: center; text-align: center; }
+  .footer-grid { text-align: center; }
+  .footer-brand, .footer-col { align-items: center; }
+  .footer-col a.pink-link { align-self: center; }
+  /* Contact boxes: matching full width, icon and text aligned left inside */
+  .footer-col a.contact-link { width: 100%; max-width: 360px; padding: 12px 16px; text-align: left; }
+  .contact-link[href^="mailto:"] span { font-size: 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
