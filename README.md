@@ -15,11 +15,13 @@ Then open http://localhost:8000.
 
 ```
 index.html          Page content
+thank-you.html      Shown after a quote request is sent (noindex)
 css/styles.css      Styles and design tokens
 js/main.js          Mobile menu, scroll reveal, form placeholder
 assets/images/      Logos, headshot, icons, share image
-CLAUDE.md           Project notes and client requirements for Claude Code
 ```
+
+When the quote form is connected to a form service, set its success redirect to `/thank-you.html`.
 
 ## Deploy
 
