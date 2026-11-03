@@ -3,6 +3,22 @@
    Designed by Promontory Web Designs
    ========================================================================== */
 
+/* ---------- Fonts (self-hosted latin subsets, SIL Open Font License) ---------- */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(../assets/fonts/rubik-latin.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Pacifico';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../assets/fonts/pacifico-latin.woff2) format('woff2');
+}
+
 /* ---------- Design tokens ---------- */
 :root {
   --red: #C8102E;
