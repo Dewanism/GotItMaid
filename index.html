@@ -171,7 +171,7 @@
     </section>
 
     <!-- Meet Shannon -->
-    <section id="about" class="section section-flush-top">
+    <section id="about" class="section">
       <div class="wrap">
         <div class="about-card reveal">
           <img class="about-photo" src="assets/images/shannon-headshot.webp" alt="Shannon, smiling, in a light blazer and glasses" width="720" height="900" loading="lazy">
@@ -228,8 +228,9 @@
           <p class="muted">Serving Chilliwack, Sardis, Promontory, Yarrow, Rosedale, Cultus Lake, Agassiz, Abbotsford and the surrounding Fraser Valley.</p>
         </div>
 
-        <!-- TODO: connect to a form service (e.g. Formspree or Netlify Forms). Update the action URL below and set the service's success redirect to /thank-you.html. -->
-        <form class="quote-form" action="#" method="POST">
+        <!-- Netlify Forms: detected at deploy. Submissions appear in the Netlify dashboard, then go to the thank-you page. -->
+        <form class="quote-form" name="quote" action="/thank-you.html" method="POST" data-netlify="true" netlify-honeypot="company-website">
+          <p hidden><label>Leave this field empty<input name="company-website" tabindex="-1" autocomplete="off"></label></p>
           <label>Name<input type="text" name="name" autocomplete="name" required></label>
           <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
           <label>Email<input type="email" name="email" autocomplete="email" required></label>
@@ -244,7 +245,6 @@
           </label>
           <label class="full">Tell me about your space<textarea name="message" rows="4"></textarea></label>
           <button type="submit" class="btn btn-red btn-lg full">Send My Quote Request</button>
-          <p class="form-status full" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>

@@ -17,13 +17,13 @@ Then open http://localhost:8000.
 index.html          Page content
 thank-you.html      Shown after a quote request is sent (noindex)
 css/styles.css      Styles and design tokens
-js/main.js          Mobile menu, scroll reveal, form placeholder
+js/main.js          Mobile menu, scroll reveal, nav highlight
 assets/images/      Logos, headshot, icons, share image (WebP, with -400/-560/-240/-210 sizes for srcset)
 assets/fonts/       Self-hosted Rubik and Pacifico (latin subsets, SIL Open Font License)
 ```
 
-When the quote form is connected to a form service, set its success redirect to `/thank-you.html`.
+The quote form uses Netlify Forms and redirects to `/thank-you.html` after a submission. It only works when deployed on Netlify.
 
 ## Deploy
 
-Static files only, so it can be hosted on Netlify, Cloudflare Pages, GitHub Pages or any web host. Upload the folder as is.
+Hosted on Netlify, with static files and no build step. In the Netlify dashboard, enable form detection and then redeploy, and add an email notification for the `quote` form so new requests reach Shannon.

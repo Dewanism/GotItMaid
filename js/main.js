@@ -4,6 +4,9 @@
 (function () {
   'use strict';
 
+  // iOS Safari only applies :active (button press feedback) when a touch listener exists
+  document.addEventListener('touchstart', function () {}, { passive: true });
+
   // Footer year
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
@@ -72,17 +75,5 @@
     });
   } else {
     items.forEach(function (el) { el.classList.add('is-visible'); });
-  }
-
-  // Quote form: placeholder handler until a form service is connected.
-  // TODO: once the form has a real action URL (Formspree, Netlify Forms, etc.), remove this block
-  // or switch it to submit with fetch() and show the status message.
-  var form = document.querySelector('.quote-form');
-  if (form && form.getAttribute('action') === '#') {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var status = form.querySelector('.form-status');
-      if (status) status.textContent = 'Thanks! This form is not connected yet. Please call or email Shannon for now.';
-    });
   }
 })();
