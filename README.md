@@ -26,4 +26,12 @@ The quote form uses Netlify Forms and redirects to `/thank-you.html` after a sub
 
 ## Deploy
 
-Hosted on Netlify, with static files and no build step. In the Netlify dashboard, enable form detection and then redeploy, and add an email notification for the `quote` form so new requests reach Shannon.
+Hosted on Netlify, with static files and no build step. In the Netlify dashboard, enable form detection and then redeploy.
+
+New quote requests are emailed by `netlify/functions/quote-email.mjs` through [Resend](https://resend.com), using the design in `netlify/quote-email-template.mjs`. Set these in Netlify's environment variables, then redeploy:
+
+- `RESEND_API_KEY`: Resend API key
+- `QUOTE_EMAIL_TO`: who receives requests (comma-separate several addresses)
+- `QUOTE_EMAIL_FROM`: the sender, on a domain verified in Resend
+
+Keep Netlify's own form notification on as a backup. It can only send to Netlify team members.
