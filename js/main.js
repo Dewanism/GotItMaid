@@ -76,4 +76,25 @@
   } else {
     items.forEach(function (el) { el.classList.add('is-visible'); });
   }
+
+  // Contact form: the message hint follows the "What can we help with?" choice,
+  // and a message becomes required for questions and other requests.
+  var service = document.getElementById('service');
+  var message = document.getElementById('message');
+  var messageLabel = document.getElementById('message-label');
+  if (service && message && messageLabel) {
+    var hints = {
+      'Get a quote for my home': ['Tell us about your home', "How many bedrooms and bathrooms, what needs the most attention, and how often you'd like cleaning.", false],
+      'Add-ons or a special request': ['What would you like done?', 'For example inside the fridge, freezer or oven, or anything else not on our list.', true],
+      'I have a question': ['Your question', "Ask away! We'll get back to you as soon as we can.", true],
+      'Something else': ['How can we help?', "Tell us what you need and we'll let you know if it's something we can do.", true]
+    };
+    var fallback = [messageLabel.textContent, message.placeholder, false];
+    service.addEventListener('change', function () {
+      var h = hints[service.value] || fallback;
+      messageLabel.textContent = h[0];
+      message.placeholder = h[1];
+      message.required = h[2];
+    });
+  }
 })();

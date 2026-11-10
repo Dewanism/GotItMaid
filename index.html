@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-CA">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Got It Maid in the Valley | House Cleaning in Chilliwack &amp; the Fraser Valley</title>
-  <meta name="description" content="Detailed house cleaning, deep cleans, Airbnb turnovers and motorhome cleaning in Chilliwack, Abbotsford, Agassiz, Cultus Lake and across the Fraser Valley. Request a free quote from Got It Maid in the Valley.">
+  <title>Got It Maid in the Valley | House Cleaning in Chilliwack, Hope &amp; Abbotsford</title>
+  <meta name="description" content="House cleaning in Chilliwack, Hope and Abbotsford with a little extra heart. Refresh, standard and deep cleaning with transparent hourly rates from $45/hour per cleaner.">
   <link rel="canonical" href="https://www.gotitmaidinthevalley.com/">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Got It Maid in the Valley Cleaning Services">
-  <meta property="og:description" content="We've got it. You go live your life. Detailed house cleaning in Chilliwack, Abbotsford, Agassiz and across the Fraser Valley.">
+  <meta property="og:description" content="Cleaning services with a little extra heart. House cleaning in Chilliwack, Hope and Abbotsford.">
   <meta property="og:image" content="https://www.gotitmaidinthevalley.com/assets/images/og-image.webp">
   <meta property="og:image:type" content="image/webp">
   <meta property="og:image:width" content="1200">
@@ -30,6 +30,7 @@
     "@context": "https://schema.org",
     "@type": "HouseCleaningService",
     "name": "Got It Maid in the Valley Cleaning Services",
+    "slogan": "Cleaning Services With a Little Extra Heart",
     "image": "https://www.gotitmaidinthevalley.com/assets/images/logo-stacked.webp",
     "url": "https://www.gotitmaidinthevalley.com/",
     "telephone": "+1-604-991-8842",
@@ -40,7 +41,38 @@
       "addressRegion": "BC",
       "addressCountry": "CA"
     },
-    "areaServed": ["Chilliwack", "Sardis", "Promontory", "Yarrow", "Rosedale", "Cultus Lake", "Agassiz", "Abbotsford", "Fraser Valley"]
+    "areaServed": [
+      { "@type": "City", "name": "Chilliwack" },
+      { "@type": "City", "name": "Hope" },
+      { "@type": "City", "name": "Abbotsford" }
+    ],
+    "priceRange": "$45-$65 per hour per cleaner",
+    "paymentAccepted": "E-transfer, Cash, Cheque",
+    "currenciesAccepted": "CAD",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Our Cleaning Experiences",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "The Dustpan Shan Special", "description": "A 2 to 3 hour refresh for well-maintained homes." }, "priceSpecification": { "@type": "UnitPriceSpecification", "price": 45, "priceCurrency": "CAD", "unitText": "per hour per cleaner" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "A Walk in the Park", "description": "Recurring standard cleaning after an initial deep cleaning reset." }, "priceSpecification": { "@type": "UnitPriceSpecification", "price": 45, "priceCurrency": "CAD", "unitText": "per hour per cleaner" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Let's Get Down to the Nitty-Gritty!", "description": "Deep cleaning with a recurring upkeep booking." }, "priceSpecification": { "@type": "UnitPriceSpecification", "price": 55, "priceCurrency": "CAD", "unitText": "per hour per cleaner" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "One-time deep cleaning", "description": "Deep cleaning with no recurring commitment." }, "priceSpecification": { "@type": "UnitPriceSpecification", "price": 65, "priceCurrency": "CAD", "unitText": "per hour per cleaner" } }
+      ]
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Do you bring your own cleaning supplies and equipment?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we bring everything we need." } },
+      { "@type": "Question", "name": "Do I need to be home while you clean?", "acceptedAnswer": { "@type": "Answer", "text": "No. We'll never enter your home unless we've arranged it with you beforehand. Life happens, so if you're not there we'll wait 15 minutes and try to reach you before we leave." } },
+      { "@type": "Question", "name": "Which areas do you serve?", "acceptedAnswer": { "@type": "Answer", "text": "Chilliwack, Hope and Abbotsford." } },
+      { "@type": "Question", "name": "How do you handle payment?", "acceptedAnswer": { "@type": "Answer", "text": "We accept e-transfer, cash or cheque." } },
+      { "@type": "Question", "name": "Do you clean homes with pets?", "acceptedAnswer": { "@type": "Answer", "text": "Yes! We just ask that pets who spook easily are put away while we work. We definitely don't want to be attacked while vacuuming." } },
+      { "@type": "Question", "name": "What's your cancellation or rescheduling policy?", "acceptedAnswer": { "@type": "Answer", "text": "If you're on a weekly, biweekly or monthly schedule and you're going away or won't need us, we're very understanding, but we do need at least 72 hours' notice." } }
+    ]
   }
   </script>
 </head>
@@ -57,13 +89,15 @@
 
       <nav class="main-nav" id="main-nav" aria-label="Main">
         <a href="#services">Services</a>
-        <a href="#about">Meet Shannon</a>
+        <a href="#rates">Rates</a>
         <a href="#reviews">Reviews</a>
-        <a href="#quote">Contact</a>
+        <a href="#about">Meet Shannon</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
       </nav>
 
       <div class="header-actions">
-        <a href="#quote" class="btn btn-red btn-sm">Free Quote</a>
+        <a href="#contact" class="btn btn-red btn-sm">Book a Clean</a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
           <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
         </button>
@@ -76,11 +110,13 @@
     <section id="top" class="hero">
       <div class="wrap hero-inner">
         <div class="hero-copy">
-          <p class="script hero-kicker">Hello, Fraser Valley!</p>
-          <h1><span class="h1-full">We've got it.<br>You go live your life.</span><span class="h1-short">Live your Life!</span></h1>
-          <p class="lead">Detailed house cleaning, deep cleans, Airbnb turnovers and motorhome cleaning across the Fraser Valley, from Chilliwack and Sardis to Abbotsford, Agassiz and Cultus Lake. Hard-working, detail-obsessed, and always happy to hear from you.</p>
+          <p class="eyebrow"><span class="eyebrow-lead">House cleaning in&nbsp;</span>Chilliwack, Hope &amp; Abbotsford</p>
+          <h1>Cleaning Services With a Little Extra Heart</h1>
+          <p class="lead">When life gets messy, we're here to help.</p>
+          <!-- Fun line: may be swapped later -->
+          <p class="script hero-fun">We're not magic... but we're pretty close to it!</p>
           <div class="btn-row">
-            <a href="#quote" class="btn btn-red btn-lg">Request a Free Quote</a>
+            <a href="#contact" class="btn btn-red btn-lg">Book a Clean</a>
             <a href="tel:+16049918842" class="btn btn-white btn-lg">
               <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               Call Now
@@ -93,50 +129,133 @@
       </div>
     </section>
 
-    <!-- Services & Pricing: red polka dot frame around a navy panel -->
-    <section id="services" class="services dots-red">
+    <!-- Services: red polka dot frame around a navy panel -->
+    <section id="services" class="services dots-red" aria-labelledby="services-heading">
       <div class="services-panel dots-navy">
         <div class="wrap">
           <div class="section-head center">
-            <p class="script kicker-pink">no surprises</p>
-            <h2>Services &amp; Pricing</h2>
-            <p class="services-intro">Simple hourly rates. Tell me your top priorities and how much time you have, and I'll tackle what matters most first, so the final bill is never a surprise.</p>
+            <p class="script kicker-pink">with a little extra heart</p>
+            <h2 id="services-heading">Our Cleaning Experiences</h2>
+            <p class="services-intro">House cleaning for homes in Chilliwack, Hope and Abbotsford. Pick the clean that fits your home, or let us help you choose.</p>
           </div>
+
           <div class="card-grid">
+            <!-- The Dustpan Shan Special -->
             <article class="service-card reveal">
-              <h3>Standard Clean</h3>
-              <p>Recurring upkeep for kitchens, bathrooms, floors and living spaces, biweekly or monthly.</p>
-              <p class="price">$45/hour</p>
+              <div class="service-top">
+                <h3>The Dustpan Shan Special</h3>
+                <p class="service-sub">A Little Spruce-Up Goes a Long Way!</p>
+              </div>
+              <p class="price">$45/hour per cleaner</p>
+              <p>For when your home just needs a little love before the company arrives. Having friends over? Hosting a birthday dinner? Or maybe you just want to come home to a beautifully refreshed space without committing to a full cleaning. Designed for well-maintained homes that need a quick little pick-me-up.</p>
+              <div class="service-list">
+                <h4 class="included-title">What's included</h4>
+                <ul class="included">
+                  <li>Quick dusting of accessible surfaces</li>
+                  <li>Wiping down countertops and commonly used surfaces</li>
+                  <li>Bathroom freshening, including sinks, mirrors and toilets</li>
+                  <li>Quick kitchen refresh</li>
+                </ul>
+              </div>
+              <details class="more">
+                <summary><span class="more-closed">See everything included (4 more)</span><span class="more-open">Show less</span></summary>
+                <ul class="included">
+                  <li>Tidying and straightening common living spaces</li>
+                  <li>Vacuuming and mopping designated areas</li>
+                  <li>Spruce up a welcoming spare room or two</li>
+                  <li>Those little finishing touches that make your home feel welcoming</li>
+                </ul>
+              </details>
+              <div class="service-notes">
+                <p class="service-meta"><strong>Time:</strong> Approximately 2 to 3 hours, depending on the size and condition of your home.</p>
+                <p class="service-meta"><strong>Good to know:</strong> Designed for homes already in good condition that need a surface-level refresh rather than deep cleaning. We'll discuss your priorities beforehand so we can make the most of our time.</p>
+              </div>
+              <p class="service-closing">A little clean, a little sparkle, and a whole lot of relief!</p>
             </article>
+
+            <!-- A Walk in the Park -->
             <article class="service-card reveal">
-              <h3>Deep Clean</h3>
-              <p>Top to bottom, including baseboards and fixtures. A great reset before regular upkeep. Inside the oven or fridge: $50 each.</p>
-              <p class="price">$55/hour</p>
+              <div class="service-top">
+                <h3>A Walk in the Park</h3>
+                <p class="service-sub">Our Signature Standard Cleaning</p>
+              </div>
+              <p class="price">$45/hour per cleaner</p>
+              <p>Because keeping your home beautiful shouldn't feel like an uphill battle. Our standard cleaning is for recurring clients whose homes have already had their initial deep cleaning reset. It's the perfect way to keep your space fresh, comfortable and beautifully maintained without spending your precious free time doing all the work yourself.</p>
+              <div class="service-list">
+                <h4 class="included-title">What's included</h4>
+                <ul class="included">
+                  <li>General dusting of accessible surfaces and furniture</li>
+                  <li>Wiping countertops and other commonly used surfaces</li>
+                  <li>Routine bathroom cleaning and sanitizing</li>
+                  <li>Cleaning sinks, faucets, toilets, mirrors, tubs and showers as part of regular upkeep</li>
+                </ul>
+              </div>
+              <details class="more">
+                <summary><span class="more-closed">See everything included (8 more)</span><span class="more-open">Show less</span></summary>
+                <ul class="included">
+                  <li>Wiping kitchen countertops and cabinet fronts as needed</li>
+                  <li>Cleaning the exterior of kitchen appliances</li>
+                  <li>Cleaning the interior and exterior of the microwave</li>
+                  <li>Wiping down small countertop appliances</li>
+                  <li>Light tidying and straightening of rooms</li>
+                  <li>Vacuuming floors and accessible areas</li>
+                  <li>Mopping appropriate hard-surface flooring</li>
+                  <li>A final inspection and our signature finishing touches</li>
+                </ul>
+              </details>
+              <div class="service-notes">
+                <p class="service-meta"><strong>Perfect for:</strong> Weekly or biweekly recurring clients. We recommend 4 hours weekly rather than 8 biweekly for faster-paced homes.</p>
+              </div>
+              <p class="service-closing">Your home stays beautiful, and you get your time back. Now that's what we call a walk in the park!</p>
             </article>
+
+            <!-- Let's Get Down to the Nitty-Gritty! -->
             <article class="service-card reveal">
-              <h3>Airbnb Turnover</h3>
-              <p>Guest-ready between stays, with fresh finishing touches.</p>
-              <p class="price">Free quote</p>
+              <div class="service-top">
+                <h3>Let's Get Down to the <span class="nowrap">Nitty-Gritty!</span></h3>
+                <p class="service-sub">Our Signature Deep Cleaning Experience</p>
+              </div>
+              <p class="price">From $55/hour per cleaner</p>
+              <p>Sometimes life happens, and the little things start adding up. Dust collects, corners get forgotten, and suddenly the house feels like one more thing on an already overwhelming to-do list. Don't worry. We've got you! Our deep cleaning goes beyond everyday upkeep to restore your home to a beautiful, manageable starting point.</p>
+              <div class="service-list">
+                <h4 class="included-title">What's included</h4>
+                <ul class="included">
+                  <li>Heavy and detailed dusting throughout the home</li>
+                  <li>Cleaning accessible baseboards, mouldings and trim</li>
+                  <li>Cleaning doors, door surfaces, frames and handles</li>
+                  <li>Wiping light switches and frequently touched surfaces</li>
+                </ul>
+              </div>
+              <details class="more">
+                <summary><span class="more-closed">See everything included (13 more)</span><span class="more-open">Show less</span></summary>
+                <ul class="included">
+                  <li>Spot-cleaning walls and marks where safe for the finish</li>
+                  <li>Interior window cleaning</li>
+                  <li>Cleaning accessible window sills and tracks</li>
+                  <li>Detailed cleaning of countertops and other surfaces</li>
+                  <li>Thorough bathroom cleaning, including stubborn buildup and hard-to-reach details</li>
+                  <li>Detailed kitchen cleaning, including cabinet exteriors, backsplash, sinks and faucets</li>
+                  <li>Cleaning appliance exteriors and the inside and outside of the microwave</li>
+                  <li>Detailed cleaning around accessible fixtures and edges</li>
+                  <li>Vacuuming and mopping floors</li>
+                  <li>Extra attention to commonly overlooked areas</li>
+                  <li>Disinfecting appropriate high-touch surfaces</li>
+                  <li>Organizing selected focus areas based on your priorities, time permitting</li>
+                  <li>Our signature finishing touches</li>
+                </ul>
+              </details>
+              <div class="service-notes">
+                <p class="service-meta"><strong>Good to know:</strong> Deep cleaning is especially recommended for first-time clients. Depending on your home, we may recommend a second deep clean before moving to routine upkeep. During your consultation, we'll discuss what matters most to you and where to focus.</p>
+              </div>
+              <p class="service-closing">We don't miss the little things.</p>
             </article>
-            <article class="service-card reveal">
-              <h3>Motorhome Cleaning</h3>
-              <p>Pre and post-vacation cleans, so the road trip starts fresh.</p>
-              <p class="price">Free quote</p>
-            </article>
-          </div>
-          <div class="services-cta">
-            <p>Not sure which clean you need? Tell me about your space and I'll recommend one.</p>
-            <div class="btn-row">
-              <a href="#quote" class="btn btn-red btn-lg">Get a Free Quote</a>
-              <a href="tel:+16049918842" class="btn btn-white btn-lg">Call 604-991-8842</a>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Before & After -->
-    <section id="before-after" class="section" aria-labelledby="ba-heading">
+    <section id="before-after" class="section bg-white" aria-labelledby="ba-heading">
       <div class="wrap">
         <h2 id="ba-heading" class="section-title">Before <span class="script amp">&amp;</span> After</h2>
         <p class="ba-intro">Real results from a recent bathroom clean in the Valley.</p>
@@ -171,18 +290,84 @@
       </div>
     </section>
 
-    <!-- Meet Shannon -->
-    <section id="about" class="section">
+    <!-- Rates -->
+    <section id="rates" class="section rates" aria-labelledby="rates-heading">
       <div class="wrap">
-        <div class="about-card reveal">
-          <img class="about-photo" src="assets/images/shannon-headshot.webp" alt="Shannon, smiling, in a light blazer and glasses" width="720" height="900" loading="lazy">
-          <div class="about-copy">
-            <h2 class="section-title">Meet Shannon</h2>
-            <p>Hi, I'm Shannon! I'm a proud mom of four, a helicopter enthusiast, and the heart behind Got It Maid in the Valley. Over 25 years in industries from beauty and wellness to construction management and experimental aircraft manufacturing taught me the value of hard work, attention to detail, and genuine customer care.</p>
-            <p>I'm also working toward a master's degree in psychology, and I've seen how much our surroundings affect our well-being. A clean, organized home can ease everyday stress and give you a place to truly exhale.</p>
-            <p>As a busy mom, I know how precious time is. My goal is to lighten your load, with a team that's proud of what they do, because a happy team makes for happy clients.</p>
-            <p class="script signature">Shannon</p>
+        <div class="section-head center">
+          <p class="script kicker-red">no surprises</p>
+          <h2 id="rates-heading">Our Cleaning Rates</h2>
+          <p class="rates-intro">Professional cleaning with transparent hourly pricing and no surprises.</p>
+        </div>
+
+        <div class="rates-grid">
+          <div class="rates-card reveal">
+            <table class="rates-table">
+              <caption class="visually-hidden">Hourly rates per cleaner for each cleaning experience</caption>
+              <thead>
+                <tr><th scope="col">Cleaning experience</th><th scope="col">Rate</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">The Dustpan Shan Special <small>Eligible maintained homes</small></th>
+                  <td><strong>$45/hour</strong> <small>per cleaner</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">A Walk in the Park <small>Recurring standard cleaning</small></th>
+                  <td><strong>$45/hour</strong> <small>per cleaner</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">Let's Get Down to the Nitty-Gritty! <small>Deep clean with a recurring upkeep booking</small></th>
+                  <td><strong>$55/hour</strong> <small>per cleaner</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">One-time deep cleaning <small>No recurring commitment</small></th>
+                  <td><strong>$65/hour</strong> <small>per cleaner</small></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 class="addons-title">Add-ons</h3>
+            <ul class="addons">
+              <li>Inside fridge <strong>$50</strong></li>
+              <li>Inside freezer <strong>$50</strong></li>
+              <li>Inside oven <strong>$50</strong></li>
+            </ul>
           </div>
+
+          <div class="rates-card rates-notes reveal">
+            <h3>A few things to know about our pricing</h3>
+            <ul class="included">
+              <li>All prices are based on actual cleaning hours, per cleaner.</li>
+              <li>A two-person team is billed for both cleaners' working hours.</li>
+              <li>The Dustpan Shan Special is a 2 to 3 hour refresh for homes that are already well maintained. New clients may need an assessment to confirm eligibility.</li>
+              <li>Standard recurring cleaning is available after your initial deep cleaning reset.</li>
+              <li>The $55/hour deep cleaning rate is for clients booking ongoing recurring maintenance. One-time deep cleaning is $65/hour.</li>
+              <li>Time depends on your home's size, condition and cleaning priorities.</li>
+              <li>Extensive organizing and other specialized services can be arranged separately.</li>
+              <li>We'll always discuss your needs and expected cleaning time before getting started.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-cta">
+          <p>Not sure which clean you need? Tell us about your home and we'll help you choose.</p>
+          <div class="btn-row">
+            <a href="#contact" class="btn btn-red btn-lg">Book a Clean</a>
+            <a href="tel:+16049918842" class="btn btn-white btn-lg">Call 604-991-8842</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Keeping up with the clean -->
+    <section id="keeping-up" class="section bg-white">
+      <div class="wrap">
+        <div class="story-card reveal">
+          <h2 class="section-title">Why We Believe in Keeping Up With the Clean</h2>
+          <p class="story-sub">A Little Maintenance Makes a Big Difference</p>
+          <p>When we deep clean your home, we put our whole hearts into it, getting into forgotten corners, tackling buildup and bringing back that fresh feeling. And we'd love to help you keep it that way!</p>
+          <p>Think of your deep clean as hitting the reset button. Regular cleaning appointments preserve all that hard work, so we spend less time battling buildup and more time keeping everything at its best. That often makes regular cleans more efficient and helps you make the most of your cleaning budget. We don't want you paying to start all over again every visit.</p>
+          <p>Of course, life happens: kids, pets, busy schedules and everyday chaos are all part of having a home. We're not here to judge. We're here to help.</p>
         </div>
       </div>
     </section>
@@ -191,19 +376,20 @@
     <section id="reviews" class="section reviews">
       <div class="wrap">
         <div class="section-head split">
-          <h2 class="section-title">Happy clients</h2>
+          <h2 class="section-title">Happy Clients</h2>
           <a href="https://g.page/r/CbDfJCA561byEBM/review" class="btn btn-red" target="_blank" rel="noopener">Review us on Google</a>
         </div>
         <div class="review-grid">
           <figure class="review-card reveal">
             <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>[Google review text from a real client]</blockquote>
-            <figcaption>[Client first name], Chilliwack</figcaption>
+            <blockquote cite="https://maps.app.goo.gl/twQFxpxfhj3UbYDJ9">Shannon was a godsend when she provided cleaning services (and friendship) when I lived in Chilliwack ten years ago. She was always on time, worked quickly and my house sparkled when she was finished. I was sorry to lose her when I relocated to Delta after my husband passed away and I could no longer manage the house on my own. I would highly recommend her cleaning services and I am so pleased to see that she has a business now. I just wish I lived closer so I could take advantage of her expertise! You will not be sorry having Shannon provide your cleaning services!</blockquote>
+            <figcaption>MaryLynn L. <a class="review-source" href="https://maps.app.goo.gl/twQFxpxfhj3UbYDJ9" target="_blank" rel="noopener">via Google</a></figcaption>
           </figure>
+          <!-- TODO: paste Laura's Yelp review text and confirm her star rating -->
           <figure class="review-card reveal">
             <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>[Google review text from a real client]</blockquote>
-            <figcaption>[Client first name], Chilliwack</figcaption>
+            <blockquote>[TODO: Laura's Yelp review text]</blockquote>
+            <figcaption>Laura <span class="review-source">via Yelp</span></figcaption>
           </figure>
           <div class="qr-card dots-red reveal">
             <a class="qr-placeholder" href="https://g.page/r/CbDfJCA561byEBM/review" target="_blank" rel="noopener" aria-label="Leave a Google review">
@@ -215,37 +401,167 @@
       </div>
     </section>
 
-    <!-- Quote / Contact -->
-    <section id="quote" class="section">
+    <!-- Intro -->
+    <section id="welcome" class="section welcome bg-white">
+      <div class="wrap">
+        <div class="welcome-copy reveal">
+          <h2 class="section-title">It's All About Coming Home</h2>
+          <p class="welcome-lead">At Got It Maid in the Valley, we believe a clean home is about so much more than sparkling countertops and freshly washed floors. It's about coming home, taking a deep breath, and feeling like a little weight has been lifted off your shoulders.</p>
+          <p>We know life gets busy, houses get messy, and sometimes there just aren't enough hours in the day. That's where we come in!</p>
+          <p>We put our whole hearts into the work we do. From the little details that make you smile to the bigger jobs that feel too overwhelming to tackle alone, we're here to help you fall in love with your space again.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Meet Shannon -->
+    <section id="about" class="section">
+      <div class="wrap">
+        <div class="about-card reveal">
+          <img class="about-photo" src="assets/images/shannon-headshot.webp" alt="Shannon, owner of Got It Maid in the Valley, smiling in a light blazer and glasses" width="720" height="900" loading="lazy">
+          <div class="about-copy">
+            <h2 class="section-title">Meet Shannon</h2>
+            <p>Hi, I'm Shannon! I'm a proud mom of four, a helicopter enthusiast, and the heart behind Got It Maid in the Valley. Over 25 years in industries from beauty and wellness to construction management and experimental aircraft manufacturing taught me the value of hard work, attention to detail, and genuine customer care.</p>
+            <p>I'm also working toward a master's degree in psychology, and I've seen how much our surroundings affect our well-being. A clean, organized home can ease everyday stress and give you a place to truly exhale.</p>
+            <p>As a busy mom, I know how precious time is. My goal is to lighten your load, with a team that's proud of what they do, because a happy team makes for happy clients.</p>
+            <p class="script signature">Shannon</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The little things -->
+    <section id="little-things" class="section bg-white">
+      <div class="wrap">
+        <div class="little-things reveal">
+          <h2 class="section-title">The Little Things Are the Big Things to Us</h2>
+          <p>At Got It Maid in the Valley, cleaning isn't a checklist we rush through. We pay attention to the details, listen to what matters to you, and take pride in leaving behind more than just a clean space. Whether it's a little extra sparkle on your bathroom fixtures or beautifully straightened cushions, we want you to feel the care that goes into our work.</p>
+          <p class="promise">Our promise is simple: to treat your home with respect, take pride in every visit, and give you a little more time to spend doing the things you love. Because coming home should feel good.</p>
+          <div class="btn-row">
+            <a href="#contact" class="btn btn-red btn-lg">Book a Clean</a>
+            <a href="tel:+16049918842" class="btn btn-white btn-lg">Call 604-991-8842</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What to expect -->
+    <section id="what-to-expect" class="section">
+      <div class="wrap">
+        <div class="section-head center">
+          <h2>What to Expect When You're Expecting... Us!</h2>
+          <p class="expect-intro">First time having someone clean your home? We've Got It Maid! No need to roll out the red carpet. That's our job... or at least to leave you feeling like we did! A few little things will help us get started:</p>
+        </div>
+        <ul class="expect-grid">
+          <li class="expect-card reveal">
+            <span class="expect-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><circle cx="5.5" cy="10.5" r="2"/><circle cx="9.5" cy="6" r="2"/><circle cx="14.5" cy="6" r="2"/><circle cx="18.5" cy="10.5" r="2"/><path d="M12 11.5c-3 0-6.2 3.6-6.2 6.2 0 1.8 1.4 2.8 3.1 2.8 1.3 0 2.1-.7 3.1-.7s1.8.7 3.1.7c1.7 0 3.1-1 3.1-2.8 0-2.6-3.2-6.2-6.2-6.2z"/></svg>
+            </span>
+            <h3>Friends with paws</h3>
+            <p>We love a friendly welcoming committee! If your pets would rather skip the introductions, please settle them somewhere safe and comfortable so we don't upset them.</p>
+          </li>
+          <li class="expect-card reveal">
+            <span class="expect-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4.5"/><path d="M11.2 11.8 20 3"/><path d="M16.5 6.5 19 9"/><path d="M14 9l2 2"/></svg>
+            </span>
+            <h3>Let's plan our entrance</h3>
+            <p>Please arrange access with us before cleaning day, whether that's a door code, a key, or you welcoming us in. Staying home while we clean? We love that too! We promise not to put you to work.</p>
+          </li>
+          <li class="expect-card reveal">
+            <span class="expect-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="2.5" width="13" height="19" rx="2"/><path d="M5.5 10h13"/><path d="M9 5.5v2"/><path d="M9 13v3"/></svg>
+            </span>
+            <h3>Behind-the-scenes cleaning</h3>
+            <p>Want us to clean behind or around large appliances? Please have them safely pulled out before we arrive. For safety and liability reasons, we can't move heavy appliances ourselves. If they slide back easily and safely, we're happy to return them; otherwise, we'll leave them pulled out for you.</p>
+          </li>
+          <li class="expect-card reveal">
+            <span class="expect-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.8-.9L3 21l1.9-5.2A8.4 8.4 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z"/><path d="M12 7.5v4.5"/><path d="M12 15.5h.01"/></svg>
+            </span>
+            <h3>A little heads-up goes a long way</h3>
+            <p>Please tell us about any allergies or sensitivities when booking so we can plan accordingly. We want to be the cure for your headache, not the cause!</p>
+          </li>
+        </ul>
+        <p class="script expect-closing">You bring the welcome. We'll bring the sparkle.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section faq bg-white">
+      <div class="wrap">
+        <div class="section-head center">
+          <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Do you bring your own cleaning supplies and equipment?</summary>
+            <p>Yes, we bring everything we need.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do I need to be home while you clean?</summary>
+            <p>No. We'll never enter your home unless we've arranged it with you beforehand. Life happens, so if you're not there we'll wait 15 minutes and try to reach you before we leave.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Which areas do you serve?</summary>
+            <p>Chilliwack, Hope and Abbotsford.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How do you handle payment?</summary>
+            <!-- TODO: add the e-transfer email address once Shannon confirms it, then remove the placeholder -->
+            <p>We accept e-transfer, cash or cheque. E-transfers can be sent to <span class="todo">[TODO: e-transfer email address]</span>.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do you clean homes with pets?</summary>
+            <p>Yes! We just ask that pets who spook easily are put away while we work. We definitely don't want to be attacked while vacuuming.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What's your cancellation or rescheduling policy?</summary>
+            <p>If you're on a weekly, biweekly or monthly schedule and you're going away or won't need us, we're very understanding, but we do need at least 72 hours' notice.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section contact">
       <div class="wrap quote-inner">
         <div class="quote-copy">
-          <h2 class="section-title">Let's get you a free quote</h2>
-          <p>Tell me a little about your space and I'll follow up with a clear price.</p>
+          <h2 class="section-title">Book a Clean</h2>
+          <p>Tell us a little about your home and what matters most to you. We'll be in touch to talk through your priorities and expected cleaning time.</p>
           <div class="btn-row">
             <a href="tel:+16049918842" class="btn btn-black">Call 604-991-8842</a>
-            <a href="mailto:Shannon@gotitmaidinthevalley.com" class="btn btn-white">Contact Me</a>
+            <a href="mailto:Shannon@gotitmaidinthevalley.com" class="btn btn-white">Email Us</a>
           </div>
           <a class="email-link" href="mailto:Shannon@gotitmaidinthevalley.com">Shannon@gotitmaidinthevalley.com</a>
-          <p class="muted">Serving Chilliwack, Sardis, Promontory, Yarrow, Rosedale, Cultus Lake, Agassiz, Abbotsford and the surrounding Fraser Valley.</p>
+          <p class="muted">Serving Chilliwack, Hope and Abbotsford.</p>
         </div>
 
-        <!-- Netlify Forms: detected at deploy. Submissions appear in the Netlify dashboard, then go to the thank-you page. -->
+        <!-- Netlify Forms: detected at deploy. The form name "quote" is kept so the existing Netlify form, its submissions and notifications carry on working. -->
         <form class="quote-form" name="quote" action="/thank-you.html" method="POST" data-netlify="true" netlify-honeypot="company-website">
           <p hidden><label>Leave this field empty<input name="company-website" tabindex="-1" autocomplete="off"></label></p>
           <label>Name<input type="text" name="name" autocomplete="name" required></label>
           <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
-          <label>Email<input type="email" name="email" autocomplete="email" required></label>
-          <label>Service
-            <select name="service">
-              <option>Standard Clean</option>
-              <option>Deep Clean</option>
-              <option>Airbnb Turnover</option>
-              <option>Motorhome Cleaning</option>
-              <option>Not sure yet</option>
+          <label class="full">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="full">What can we help with?
+            <select name="service" id="service" required>
+              <option value="" disabled selected>Choose one</option>
+              <optgroup label="Book a clean">
+                <option>The Dustpan Shan Special</option>
+                <option>A Walk in the Park</option>
+                <option>Let's Get Down to the Nitty-Gritty!</option>
+                <option>Not sure which clean is right for me</option>
+              </optgroup>
+              <optgroup label="Something else">
+                <option>Get a quote for my home</option>
+                <option>Add-ons or a special request</option>
+                <option>I have a question</option>
+                <option>Something else</option>
+              </optgroup>
             </select>
           </label>
-          <label class="full">Tell me about your space<textarea name="message" rows="4"></textarea></label>
-          <button type="submit" class="btn btn-red btn-lg full">Send My Quote Request</button>
+          <label class="full"><span id="message-label">Tell us about your home</span>
+            <textarea name="message" id="message" rows="4" placeholder="How many bedrooms and bathrooms, any pets, and when you'd like us to come."></textarea>
+          </label>
+          <button type="submit" class="btn btn-red btn-lg full">Send My Request</button>
         </form>
       </div>
     </section>
@@ -254,25 +570,26 @@
   <footer class="site-footer dots-navy">
     <div class="wrap footer-grid">
       <div class="footer-brand">
-        <img src="assets/images/logo-badge.webp" srcset="assets/images/logo-badge-210.webp 210w, assets/images/logo-badge.webp 420w" sizes="124px" alt="Got It Maid in the Valley" width="420" height="400" loading="lazy">
+        <img src="assets/images/logo-badge.webp" srcset="assets/images/logo-badge-210.webp 210w, assets/images/logo-badge.webp 420w" sizes="124px" alt="Got It Maid in the Valley badge logo" width="420" height="400" loading="lazy">
         <p class="script kicker-pink">We've got it.</p>
-        <a href="#quote" class="btn btn-red btn-sm">Request a Free Quote</a>
+        <a href="#contact" class="btn btn-red btn-sm">Book a Clean</a>
       </div>
       <nav class="footer-col" aria-label="Footer">
         <h2>Explore</h2>
         <a href="#top">Home</a>
-        <a href="#services">Services &amp; Pricing</a>
+        <a href="#services">Services</a>
         <a href="#before-after">Before &amp; After</a>
-        <a href="#about">Meet Shannon</a>
+        <a href="#rates">Rates</a>
         <a href="#reviews">Reviews</a>
-        <a href="#quote">Request a Quote</a>
+        <a href="#about">Meet Shannon</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
       </nav>
       <div class="footer-col">
         <h2>Services</h2>
-        <a href="#services">Standard Clean</a>
-        <a href="#services">Deep Clean</a>
-        <a href="#services">Airbnb Turnover</a>
-        <a href="#services">Motorhome Cleaning</a>
+        <a href="#services">The Dustpan Shan Special</a>
+        <a href="#services">A Walk in the Park</a>
+        <a href="#services">Let's Get Down to the Nitty-Gritty!</a>
       </div>
       <div class="footer-col">
         <h2>Get in Touch</h2>
@@ -284,7 +601,7 @@
           <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
           <span><small>Email</small>Shannon@<wbr>gotitmaidinthevalley.com</span>
         </a>
-        <p>Serving Chilliwack, Sardis, Promontory, Yarrow, Rosedale, Cultus Lake, Agassiz, Abbotsford and the Fraser Valley</p>
+        <p>Serving Chilliwack, Hope and Abbotsford</p>
         <a class="pink-link" href="https://g.page/r/CbDfJCA561byEBM/review" target="_blank" rel="noopener">Leave a Google Review</a>
       </div>
     </div>
