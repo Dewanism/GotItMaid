@@ -48,7 +48,7 @@
   --radius-lg: 24px;
   --wrap: 1200px;
   --gutter: 32px;
-  --section-pad: clamp(84px, 13vw, 120px);
+  --section-pad: clamp(72px, 10vw, 112px);
 }
 
 /* ---------- Base ---------- */
@@ -170,7 +170,7 @@ summary::-webkit-details-marker { display: none; }
 .menu-toggle:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--black); }
 
 /* ---------- Hero ---------- */
-.hero { padding: clamp(64px, 5vw, 96px) 0 clamp(104px, 10vw, 170px); }
+.hero { padding: clamp(56px, 5vw, 88px) 0 clamp(80px, 7.5vw, 128px); }
 .hero-inner { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(48px, 5vw, 72px); }
 .hero-copy { flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
 .hero-kicker { font-size: 28px; color: var(--red); }
@@ -187,6 +187,14 @@ summary::-webkit-details-marker { display: none; }
 .hero .btn-row { padding-top: 6px; }
 .hero-logo { flex: 1 1 360px; min-width: 0; display: flex; justify-content: center; }
 .hero-logo img { width: 360px; animation: float 6s ease-in-out infinite; }
+/* Tablets: once the logo drops below the text, centre everything and keep the logo smaller */
+@media (max-width: 1000px) {
+  .hero-copy { align-items: center; text-align: center; }
+  .hero .eyebrow { align-self: center; }
+  .hero .btn-row { justify-content: center; }
+  .hero .lead { margin: 0 auto; }
+  .hero-logo img { width: 300px; }
+}
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
 /* ---------- Section basics ---------- */
@@ -257,6 +265,8 @@ summary::-webkit-details-marker { display: none; }
 .service-card h3 { font-size: 24px; font-weight: 800; text-wrap: balance; }
 .nowrap { white-space: nowrap; }
 .service-card p { color: var(--ink); font-size: 16px; }
+.service-card .service-summary { color: var(--black); font-size: 17px; line-height: 1.55; }
+.more .more-story { margin: 14px 0 4px; padding-left: 14px; border-left: 3px solid rgba(200,16,46,.35); font-size: 15px; line-height: 1.6; }
 .service-card .service-sub { color: var(--red); font-weight: 800; font-size: 17px; line-height: 1.35; margin-top: -4px; text-wrap: balance; }
 .service-card .price {
   justify-self: start; align-self: start;
@@ -295,6 +305,8 @@ summary::-webkit-details-marker { display: none; }
 /* ---------- Rates (its own white section below the dotted Services frame) ---------- */
 .rates .section-head { gap: 12px; }
 .services-intro { max-width: 600px; color: var(--footer-text); font-size: 18px; margin-top: 6px; }
+.services-intro a { color: var(--white); text-decoration-color: var(--pink); text-underline-offset: 3px; }
+@media (hover: hover) { .services-intro a:hover { color: var(--pink); } }
 .kicker-red { font-size: 26px; color: var(--red); }
 .rates-intro { max-width: 600px; color: var(--ink); font-size: 18px; margin-top: 6px; }
 .section-cta {
@@ -316,10 +328,16 @@ summary::-webkit-details-marker { display: none; }
   text-align: left; padding: 0 0 10px; border-bottom: 1px solid rgba(18,18,18,.2);
 }
 .rates-table thead th:last-child { text-align: right; }
-.rates-table tbody th, .rates-table td { padding: 16px 0; border-bottom: 1px solid rgba(18,18,18,.15); vertical-align: top; }
+.rates-table tbody th, .rates-table td { padding: 18px 0; border-bottom: 1px solid rgba(18,18,18,.15); vertical-align: top; }
 .rates-table tbody th { text-align: left; font-size: 17px; font-weight: 800; line-height: 1.3; padding-right: 16px; }
 .rates-table td { text-align: right; white-space: nowrap; }
-.rates-table td strong { font-size: 21px; font-weight: 800; color: var(--red); }
+.rates-table td strong { font-size: 24px; font-weight: 800; color: var(--red); letter-spacing: -.3px; }
+.rate-tag {
+  display: inline-block; vertical-align: 2px; margin-left: 6px;
+  background: var(--navy); color: var(--white); font-size: 11px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 999px; line-height: 1.3;
+}
+.rate-tag-once { background: var(--white); color: var(--navy); border: 1.5px solid var(--navy); }
 .rates-table small { display: block; font-size: 14px; font-weight: 400; color: var(--ink); margin-top: 3px; }
 .addons-title { font-size: 16px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin: 24px 0 12px; }
 .addons { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
@@ -406,19 +424,20 @@ summary::-webkit-details-marker { display: none; }
 /* ---------- Reviews ---------- */
 .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(28px, 3vw, 36px); }
 /* Desktop: the first (longer) review gets a wider column */
-@media (min-width: 1000px) { .review-grid { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1fr); } }
+@media (min-width: 900px) { .review-grid { grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); max-width: 1080px; margin: 0 auto; } }
 .review-card {
   margin: 0; background: var(--surface); border: var(--outline); border-radius: var(--radius);
-  padding: 32px; display: flex; flex-direction: column; gap: 14px;
+  padding: clamp(28px, 3.5vw, 44px); display: flex; flex-direction: column; gap: 16px; box-shadow: var(--shadow-sm);
 }
-.review-card blockquote { margin: 0; color: var(--ink); font-size: 17px; }
+.review-card blockquote { margin: 0; color: var(--ink); font-size: 18px; line-height: 1.7; }
+.review-card blockquote::before { content: "\201C"; display: block; font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: 64px; line-height: .5; color: var(--red); margin: 8px 0 6px; }
 .review-card figcaption { font-weight: 800; font-size: 15px; }
 .review-source { font-weight: 400; color: var(--ink); }
 a.review-source { text-decoration: underline; text-underline-offset: 3px; }
 @media (hover: hover) { a.review-source:hover { color: var(--red); } }
 .stars { color: var(--red); font-size: 22px; letter-spacing: 3px; }
 .qr-card {
-  border: var(--outline); border-radius: var(--radius); padding: 26px;
+  border: var(--outline); border-radius: var(--radius); padding: 18px;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center;
 }
 .qr-placeholder {
@@ -426,6 +445,13 @@ a.review-source { text-decoration: underline; text-underline-offset: 3px; }
   display: flex; align-items: center; justify-content: center; padding: 10px; color: var(--ink); font-size: 14px;
 }
 .qr-placeholder img { width: 100%; height: auto; image-rendering: pixelated; }
+.qr-inner {
+  width: 100%; height: 100%; background: var(--white); border-radius: 12px; padding: 28px 22px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center;
+}
+.qr-card h3 { font-size: 24px; font-weight: 800; }
+.qr-inner > p:not(.pill) { color: var(--ink); font-size: 16px; line-height: 1.5; max-width: 280px; }
+.qr-card .btn { margin-top: 6px; }
 .pill { background: var(--black); color: var(--white); font-size: 15px; font-weight: 700; padding: 6px 14px; border-radius: 999px; }
 
 /* ---------- What to expect ---------- */
@@ -446,11 +472,11 @@ a.review-source { text-decoration: underline; text-underline-offset: 3px; }
 .expect-closing { text-align: center; font-size: clamp(26px, 3vw, 32px); line-height: 1.4; color: var(--red); margin-top: clamp(40px, 4.5vw, 56px); }
 
 /* ---------- FAQ ---------- */
-.faq-list { max-width: 860px; margin: 0 auto; display: grid; gap: 16px; }
+.faq-list { max-width: 860px; margin: 0 auto; display: grid; gap: 14px; }
 .faq-item { background: var(--surface); border: var(--outline); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
 .faq-item summary {
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  padding: 18px 22px; font-size: 18px; font-weight: 800; line-height: 1.35; border-radius: var(--radius);
+  min-height: 64px; padding: 18px 22px; font-size: 18px; font-weight: 800; line-height: 1.35; border-radius: var(--radius);
 }
 .faq-item summary::after {
   content: ""; flex: none; width: 30px; height: 30px; border-radius: 50%;
@@ -464,7 +490,8 @@ a.review-source { text-decoration: underline; text-underline-offset: 3px; }
   transition: transform .2s ease;
 }
 .faq-item[open] summary::before { transform: scaleY(0); }
-.faq-item p { padding: 0 22px 20px; color: var(--ink); }
+.faq-item p { padding: 0 64px 22px 22px; color: var(--ink); line-height: 1.7; max-width: 72ch; }
+.faq-item[open] summary { color: var(--red); }
 @media (hover: hover) { .faq-item summary:hover { color: var(--red); } }
 
 /* ---------- Contact ---------- */
@@ -533,7 +560,8 @@ a.review-source { text-decoration: underline; text-underline-offset: 3px; }
 .footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
 .footer-brand img { height: 118px; width: auto; }
 .footer-brand .kicker-pink { font-size: 22px; }
-.footer-col { display: flex; flex-direction: column; gap: 10px; }
+.footer-col { display: flex; flex-direction: column; gap: 6px; }
+.footer-col > a:not(.contact-link) { padding: 4px 0; }
 .footer-col h2 { font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--white); margin-bottom: 6px; }
 .footer-col a { color: var(--footer-text); text-decoration: none; }
 @media (hover: hover) { .footer-col a:hover { color: var(--pink); } }
@@ -627,7 +655,7 @@ a.review-source { text-decoration: underline; text-underline-offset: 3px; }
   .service-card { padding: 28px 22px; }
   .faq-item summary { font-size: 17px; padding: 16px 18px; }
   .faq-item summary::before { right: 18px; }
-  .faq-item p { padding: 0 18px 18px; }
+  .faq-item p { padding: 0 18px 20px; }
   .services { --dot-tile: 18px; --dot-size: 3px; }
   .about-card { padding: 32px 26px; gap: 36px; }
   .about-photo { height: 380px; }
@@ -645,8 +673,11 @@ a.review-source { text-decoration: underline; text-underline-offset: 3px; }
   #before-after .section-title, .ba-intro { text-align: center; }
   .about-card { justify-content: center; }
   .about-copy { align-items: center; text-align: center; }
+  /* Long paragraphs read more easily left-aligned; the heading and signature stay centred */
+  .about-copy p:not(.signature) { text-align: left; }
   .section-head.split { flex-direction: column; align-items: center; text-align: center; }
   .review-card { align-items: center; text-align: center; }
+  .review-card blockquote { text-align: left; }
   .quote-copy { align-items: center; text-align: center; }
   .footer-grid { text-align: center; }
   .footer-brand, .footer-col { align-items: center; }
