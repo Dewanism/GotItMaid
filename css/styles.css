@@ -258,8 +258,8 @@ summary::-webkit-details-marker { display: none; }
   border: var(--outline); border-radius: var(--radius);
   padding: 32px 28px;
   /* Each card shares the grid's rows (subgrid), so the title block, price, blurb, included list,
-     expander, notes and closing line start at the same height across all three cards. */
-  display: grid; grid-row: span 7; grid-template-rows: subgrid; row-gap: 16px; align-content: start;
+     expander and closing line start at the same height across all three cards. */
+  display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 16px; align-content: start;
   box-shadow: var(--shadow-lg);
   transition: transform .25s ease, box-shadow .25s ease;
 }
@@ -303,6 +303,7 @@ summary::-webkit-details-marker { display: none; }
 .service-card .service-closing { font-family: var(--font-script); color: var(--red); font-size: 21px; line-height: 1.45; padding-top: 6px; }
 .service-top { display: flex; flex-direction: column; gap: 12px; }
 .service-list, .service-notes { display: flex; flex-direction: column; gap: 12px; }
+.more .service-notes { margin: 14px 0 4px; }
 
 /* ---------- Rates (its own white section below the dotted Services frame) ---------- */
 .rates .section-head { gap: 12px; }
@@ -653,12 +654,17 @@ a.review-source { text-decoration: underline; text-underline-offset: 3px; }
 }
 
 @media (max-width: 760px) {
-  :root { --gutter: 18px; }
+  :root { --gutter: 24px; }
   .brand img { height: 48px; }
   .header-actions .btn-sm { padding: 8px 14px; font-size: 15px; }
-  .hero { padding: 56px 0 88px; }
+  .hero { padding: 72px 0 104px; }
+  .hero-copy { gap: 26px; }
+  .hero h1 { font-size: 38px; }
+  .lead { font-size: 19px; }
+  .hero-fun { font-size: 23px; }
+  .hero .btn-row { padding-top: 10px; }
   .hero-logo img { width: 280px; }
-  .service-card { padding: 28px 22px; }
+  .service-card { padding: 32px 24px; row-gap: 18px; }
   .faq-item summary { font-size: 17px; padding: 16px 18px; }
   .faq-item summary::before { right: 18px; }
   .faq-item p { padding: 0 18px 20px; }
