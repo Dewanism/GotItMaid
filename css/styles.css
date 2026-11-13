@@ -48,7 +48,7 @@
   --radius-lg: 24px;
   --wrap: 1200px;
   --gutter: 32px;
-  --section-pad: clamp(72px, 10vw, 112px);
+  --section-pad: clamp(80px, 10vw, 128px);
 }
 
 /* ---------- Base ---------- */
@@ -170,9 +170,9 @@ summary::-webkit-details-marker { display: none; }
 .menu-toggle:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--black); }
 
 /* ---------- Hero ---------- */
-.hero { padding: clamp(56px, 5vw, 88px) 0 clamp(80px, 7.5vw, 128px); }
+.hero { padding: clamp(88px, 8vw, 144px) 0 clamp(112px, 10vw, 176px); }
 .hero-inner { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(48px, 5vw, 72px); }
-.hero-copy { flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+.hero-copy { flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 28px; }
 .hero-kicker { font-size: 28px; color: var(--red); }
 .hero h1 { font-size: clamp(40px, 5.4vw, 66px); line-height: 1.04; font-weight: 800; letter-spacing: -1.5px; text-wrap: balance; }
 .lead { font-size: 22px; color: var(--ink); max-width: 540px; }
@@ -181,10 +181,12 @@ summary::-webkit-details-marker { display: none; }
   background: var(--white); border: var(--outline); border-radius: 999px; box-shadow: var(--shadow-sm);
   padding: 6px 14px; font-size: 14px; font-weight: 700; color: var(--navy);
 }
-@media (max-width: 370px) { .eyebrow-lead { display: none; } }
+/* Phones: drop "House cleaning in" so the four areas fit on one line */
+@media (max-width: 760px) { .eyebrow-lead { display: none; } }
 .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
 .hero-fun { font-size: 26px; line-height: 1.4; color: var(--red); }
-.hero .btn-row { padding-top: 6px; }
+.hero .eyebrow { margin-bottom: 6px; }
+.hero .btn-row { padding-top: 16px; }
 .hero-logo { flex: 1 1 360px; min-width: 0; display: flex; justify-content: center; }
 .hero-logo img { width: 360px; animation: float 6s ease-in-out infinite; }
 /* Tablets: once the logo drops below the text, centre everything and keep the logo smaller */
@@ -434,10 +436,10 @@ summary::-webkit-details-marker { display: none; }
 .review-card blockquote { margin: 0; color: var(--ink); font-size: 18px; line-height: 1.7; }
 .review-card blockquote p + p { margin-top: 1em; }
 .review-card blockquote::before { content: "\201C"; display: block; font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: 64px; line-height: .5; color: var(--red); margin: 8px 0 6px; }
-.review-card figcaption { font-weight: 800; font-size: 15px; }
+.review-card figcaption { margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(18,18,18,.12); font-weight: 800; font-size: 16px; }
 .review-source { font-weight: 400; color: var(--ink); }
 a.review-source { text-decoration: underline; text-underline-offset: 3px; }
-.review-link { display: block; margin-top: 4px; }
+.review-link { display: block; margin-top: 2px; font-size: 14px; }
 @media (hover: hover) { a.review-source:hover { color: var(--red); } }
 .stars { color: var(--red); font-size: 22px; letter-spacing: 3px; }
 .qr-card {
