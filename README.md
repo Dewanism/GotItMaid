@@ -31,7 +31,6 @@ Hosted on Netlify, with static files and no build step. In the Netlify dashboard
 New inquiries are emailed by `netlify/functions/submission-created.mjs` through [Resend](https://resend.com), using the design in `netlify/quote-email-template.mjs`. Set these in Netlify's environment variables, then redeploy:
 
 - `RESEND_API_KEY`: Resend API key
-- `QUOTE_EMAIL_TO`: who receives requests (comma-separate several addresses)
-- `QUOTE_EMAIL_FROM`: the sender, on a domain verified in Resend
+- `CONTACT_TO_EMAIL`: who receives requests (comma-separate several addresses)
 
-Keep Netlify's own form notification on as a backup. It can only send to Netlify team members.
+Emails are sent from `Got It Maid Website <forms@contact.promontorywebdesigns.com>`, set in the function. Turn off Netlify's own email notification for the `quote` form, or every inquiry arrives twice. Submissions are still saved in the Netlify dashboard.

@@ -425,15 +425,19 @@ summary::-webkit-details-marker { display: none; }
 .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(28px, 3vw, 36px); }
 /* Desktop: the first (longer) review gets a wider column */
 @media (min-width: 900px) { .review-grid { grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); max-width: 1080px; margin: 0 auto; } }
+/* Desktop: reviews stack in the wide column, the QR card fills the narrow one beside them */
+@media (min-width: 900px) { .review-grid .qr-card { grid-column: 2; grid-row: 1 / span 2; } }
 .review-card {
   margin: 0; background: var(--surface); border: var(--outline); border-radius: var(--radius);
   padding: clamp(28px, 3.5vw, 44px); display: flex; flex-direction: column; gap: 16px; box-shadow: var(--shadow-sm);
 }
 .review-card blockquote { margin: 0; color: var(--ink); font-size: 18px; line-height: 1.7; }
+.review-card blockquote p + p { margin-top: 1em; }
 .review-card blockquote::before { content: "\201C"; display: block; font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: 64px; line-height: .5; color: var(--red); margin: 8px 0 6px; }
 .review-card figcaption { font-weight: 800; font-size: 15px; }
 .review-source { font-weight: 400; color: var(--ink); }
 a.review-source { text-decoration: underline; text-underline-offset: 3px; }
+.review-link { display: block; margin-top: 4px; }
 @media (hover: hover) { a.review-source:hover { color: var(--red); } }
 .stars { color: var(--red); font-size: 22px; letter-spacing: 3px; }
 .qr-card {
