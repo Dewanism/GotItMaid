@@ -196,6 +196,13 @@ summary::-webkit-details-marker { display: none; }
   .hero .btn-row { justify-content: center; }
   .hero .lead { margin: 0 auto; }
   .hero-logo img { width: 300px; }
+  /* The text fills the first screen below the header (122px incl. the top dot strip), so the logo
+     waits just below the fold instead of peeking in half-cut */
+  .hero-copy {
+    justify-content: center;
+    min-height: calc(100vh - 122px - clamp(88px, 8vw, 144px));
+    min-height: calc(100svh - 122px - clamp(88px, 8vw, 144px));
+  }
 }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
@@ -256,10 +263,10 @@ summary::-webkit-details-marker { display: none; }
 .service-card {
   background: var(--cream); color: var(--black);
   border: var(--outline); border-radius: var(--radius);
-  padding: 32px 28px;
+  padding: 28px 28px 30px;
   /* Each card shares the grid's rows (subgrid), so the title block, price, blurb, included list,
      expander and closing line start at the same height across all three cards. */
-  display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 16px; align-content: start;
+  display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 14px; align-content: start;
   box-shadow: var(--shadow-lg);
   transition: transform .25s ease, box-shadow .25s ease;
 }
@@ -267,7 +274,7 @@ summary::-webkit-details-marker { display: none; }
 .service-card h3 { font-size: 24px; font-weight: 800; text-wrap: balance; }
 .nowrap { white-space: nowrap; }
 .service-card p { color: var(--ink); font-size: 16px; }
-.service-card .service-summary { color: var(--black); font-size: 17px; line-height: 1.55; }
+.service-card .service-summary { color: var(--black); font-size: 16px; line-height: 1.55; }
 .more .more-story { margin: 14px 0 4px; padding-left: 14px; border-left: 3px solid rgba(200,16,46,.35); font-size: 15px; line-height: 1.6; }
 .service-card .service-sub { color: var(--red); font-weight: 800; font-size: 17px; line-height: 1.35; margin-top: -4px; text-wrap: balance; }
 .service-card .price {
@@ -275,8 +282,9 @@ summary::-webkit-details-marker { display: none; }
   background: var(--black); color: var(--white);
   font-weight: 800; font-size: clamp(14px, 3.7vw, 16px); padding: 6px 14px; border-radius: 999px;
 }
-.included-title { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-top: 6px; }
-.service-card .more { margin-top: -6px; }
+/* margin-bottom: 0 clears the browser's default h4 margin, which doubled the gap above the list */
+.included-title { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin: 4px 0 0; }
+.service-card .more { margin-top: -8px; }
 /* Polka dot bullets */
 .included { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .included li { position: relative; padding-left: 24px; font-size: 16px; line-height: 1.45; color: var(--ink); }
@@ -300,9 +308,9 @@ summary::-webkit-details-marker { display: none; }
 .more .included { margin: 4px 0 6px; }
 .service-card .service-meta { font-size: 15px; line-height: 1.5; }
 .service-meta strong { color: var(--black); }
-.service-card .service-closing { font-family: var(--font-script); color: var(--red); font-size: 21px; line-height: 1.45; padding-top: 6px; }
+.service-card .service-closing { font-family: var(--font-script); color: var(--red); font-size: 19px; line-height: 1.4; }
 .service-top { display: flex; flex-direction: column; gap: 12px; }
-.service-list, .service-notes { display: flex; flex-direction: column; gap: 12px; }
+.service-list, .service-notes { display: flex; flex-direction: column; gap: 10px; }
 .more .service-notes { margin: 14px 0 4px; }
 
 /* ---------- Rates (its own white section below the dotted Services frame) ---------- */
@@ -658,7 +666,24 @@ a.review-source { text-decoration: underline; text-underline-offset: 3px; }
   .brand img { height: 48px; }
   .header-actions .btn-sm { padding: 8px 14px; font-size: 15px; }
   .hero { padding: 72px 0 104px; }
-  .hero-copy { gap: 26px; }
+  /* Header is shorter on phones: 108px incl. the top dot strip */
+  .hero-copy {
+    gap: 26px;
+    min-height: calc(100vh - 108px - 72px);
+    min-height: calc(100svh - 108px - 72px);
+  }
+}
+/* Short phones: tighter spacing so the buttons still fit on the first screen */
+@media (max-width: 760px) and (max-height: 780px) {
+  .hero { padding-top: 36px; }
+  .hero-copy {
+    gap: 20px;
+    min-height: calc(100vh - 108px - 36px);
+    min-height: calc(100svh - 108px - 36px);
+  }
+  .hero .btn-row { padding-top: 4px; }
+}
+@media (max-width: 760px) {
   .hero h1 { font-size: 38px; }
   .lead { font-size: 19px; }
   .hero-fun { font-size: 23px; }
