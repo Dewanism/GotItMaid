@@ -60,13 +60,24 @@
 
   // Scroll reveal
   var items = document.querySelectorAll('.reveal');
+  var io = null;
+  var show = function (el) {
+    if (io) io.unobserve(el);
+    if (!el.classList.contains('reveal') || el.classList.contains('is-visible')) return;
+    el.classList.add('is-visible');
+    // Once faded in, drop the reveal styles so they stop overriding the element's own
+    // hover transform and transition
+    el.addEventListener('transitionend', function done(e) {
+      if (e.target !== el || e.propertyName !== 'opacity') return;
+      el.removeEventListener('transitionend', done);
+      el.classList.remove('reveal', 'is-visible');
+      el.style.transitionDelay = '';
+    });
+  };
   if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
+    io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) show(entry.target);
       });
     }, { threshold: 0.12 });
     items.forEach(function (el, i) {
@@ -74,7 +85,37 @@
       io.observe(el);
     });
   } else {
-    items.forEach(function (el) { el.classList.add('is-visible'); });
+    items.forEach(show);
+  }
+  // Jumping to a section via a link: reveal everything straight away, so the section is
+  // already showing when the scroll lands instead of fading in late
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('a[href^="#"]')) items.forEach(show);
+  });
+
+  // Service cards (desktop, three across): the cards share grid rows so their top blocks line up,
+  // which also made all three stretch when one was expanded. The CSS lets each card size itself
+  // while any card is open; --rows carries the shared row heights so the top blocks stay aligned.
+  var cardGrid = document.querySelector('.card-grid');
+  var firstCard = cardGrid && cardGrid.querySelector('.service-card');
+  if (firstCard) {
+    var syncRows = function () {
+      cardGrid.classList.add('is-measuring'); // back to shared rows while we measure
+      var gap = parseFloat(getComputedStyle(firstCard).rowGap) || 0;
+      var tops = Array.prototype.map.call(firstCard.children, function (el) {
+        return el.getBoundingClientRect().top - (parseFloat(getComputedStyle(el).marginTop) || 0);
+      });
+      cardGrid.classList.remove('is-measuring');
+      var rows = [];
+      for (var i = 0; i < tops.length - 1; i++) {
+        rows.push('minmax(' + Math.max(0, tops[i + 1] - tops[i] - gap).toFixed(2) + 'px, auto)');
+      }
+      cardGrid.style.setProperty('--rows', rows.join(' '));
+    };
+    syncRows();
+    window.addEventListener('resize', syncRows);
+    window.addEventListener('load', syncRows);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncRows);
   }
 
   // Contact form: the message hint follows the "What can we help with?" choice,

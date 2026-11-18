@@ -53,7 +53,12 @@
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+/* scroll-padding-top matches the sticky header's height exactly (104px, 90px on phones), so a
+   section lands flush under it. Any more and a strip of the previous section shows as a gap. */
+html { scroll-behavior: smooth; scroll-padding-top: 104px; }
+@media (max-width: 760px) { html { scroll-padding-top: 90px; } }
+/* "Home" links go all the way to the top of the page, not just to the hero under the header */
+#top { scroll-margin-top: 200px; }
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -170,9 +175,15 @@ summary::-webkit-details-marker { display: none; }
 .menu-toggle:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--black); }
 
 /* ---------- Hero ---------- */
-.hero { padding: clamp(88px, 8vw, 144px) 0 clamp(112px, 10vw, 176px); }
+/* --hero-top is reused below to size the first screen on tablets */
+.hero { --hero-top: clamp(64px, 6vw, 96px); padding: var(--hero-top) 0; }
+/* Desktop: the hero fills the first screen under the header (122px incl. the top dot strip) with
+   its content centred, so the next section starts just below the fold */
+@media (min-width: 1001px) {
+  .hero { display: flex; align-items: center; min-height: calc(100vh - 122px); min-height: calc(100svh - 122px); }
+}
 .hero-inner { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(48px, 5vw, 72px); }
-.hero-copy { flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 28px; }
+.hero-copy { flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 22px; }
 .hero-kicker { font-size: 28px; color: var(--red); }
 .hero h1 { font-size: clamp(40px, 5.4vw, 66px); line-height: 1.04; font-weight: 800; letter-spacing: -1.5px; text-wrap: balance; }
 .lead { font-size: 22px; color: var(--ink); max-width: 540px; }
@@ -185,10 +196,10 @@ summary::-webkit-details-marker { display: none; }
 @media (max-width: 760px) { .eyebrow-lead { display: none; } }
 .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
 .hero-fun { font-size: 26px; line-height: 1.4; color: var(--red); }
-.hero .eyebrow { margin-bottom: 6px; }
-.hero .btn-row { padding-top: 16px; }
+.hero .eyebrow { margin-bottom: 4px; }
+.hero .btn-row { padding-top: 12px; }
 .hero-logo { flex: 1 1 360px; min-width: 0; display: flex; justify-content: center; }
-.hero-logo img { width: 360px; animation: float 6s ease-in-out infinite; }
+.hero-logo img { width: 320px; animation: float 6s ease-in-out infinite; }
 /* Tablets: once the logo drops below the text, centre everything and keep the logo smaller */
 @media (max-width: 1000px) {
   .hero-copy { align-items: center; text-align: center; }
@@ -200,8 +211,8 @@ summary::-webkit-details-marker { display: none; }
      waits just below the fold instead of peeking in half-cut */
   .hero-copy {
     justify-content: center;
-    min-height: calc(100vh - 122px - clamp(88px, 8vw, 144px));
-    min-height: calc(100svh - 122px - clamp(88px, 8vw, 144px));
+    min-height: calc(100vh - 122px - var(--hero-top));
+    min-height: calc(100svh - 122px - var(--hero-top));
   }
 }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -265,10 +276,16 @@ summary::-webkit-details-marker { display: none; }
   border: var(--outline); border-radius: var(--radius);
   padding: 28px 28px 30px;
   /* Each card shares the grid's rows (subgrid), so the title block, price, blurb, included list,
-     expander and closing line start at the same height across all three cards. */
-  display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 14px; align-content: start;
+     and expander start at the same height across all three cards. */
+  display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 14px; align-content: start;
   box-shadow: var(--shadow-lg);
   transition: transform .25s ease, box-shadow .25s ease;
+}
+/* Three across: once a card is expanded, the cards stop sharing rows so only that card grows
+   (shared rows stretched all three). --rows is set in main.js and keeps the top blocks lined up. */
+@media (min-width: 1101px) {
+  .card-grid:has(.more[open]):not(.is-measuring) { align-items: start; }
+  .card-grid:has(.more[open]):not(.is-measuring) .service-card { grid-template-rows: var(--rows, none); }
 }
 @media (hover: hover) { .service-card:hover { transform: translateY(-4px); box-shadow: 0 8px 18px rgba(0,0,0,.18), 0 40px 80px rgba(0,0,0,.3); } }
 .service-card h3 { font-size: 24px; font-weight: 800; text-wrap: balance; }
@@ -308,13 +325,15 @@ summary::-webkit-details-marker { display: none; }
 .more .included { margin: 4px 0 6px; }
 .service-card .service-meta { font-size: 15px; line-height: 1.5; }
 .service-meta strong { color: var(--black); }
-.service-card .service-closing { font-family: var(--font-script); color: var(--red); font-size: 19px; line-height: 1.4; }
+.service-card .service-closing { font-family: var(--font-script); color: var(--red); font-size: 19px; line-height: 1.4; margin-top: 16px; }
 .service-top { display: flex; flex-direction: column; gap: 12px; }
 .service-list, .service-notes { display: flex; flex-direction: column; gap: 10px; }
 .more .service-notes { margin: 14px 0 4px; }
 
 /* ---------- Rates (its own white section below the dotted Services frame) ---------- */
-.rates .section-head { gap: 12px; }
+/* Tighter than the default section so the heading and both cards fit one screen from the nav */
+.rates { padding-top: clamp(44px, 5vw, 60px); }
+.rates .section-head { gap: 8px; margin-bottom: clamp(24px, 2.8vw, 32px); }
 .services-intro { max-width: 600px; color: var(--footer-text); font-size: 18px; margin-top: 6px; }
 .services-intro a { color: var(--white); text-decoration-color: var(--pink); text-underline-offset: 3px; }
 @media (hover: hover) { .services-intro a:hover { color: var(--pink); } }
@@ -326,35 +345,39 @@ summary::-webkit-details-marker { display: none; }
 }
 .section-cta p { color: var(--ink); font-size: 18px; max-width: 560px; }
 .section-cta .btn-row { justify-content: center; }
-.rates-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(28px, 2.4vw, 36px); align-items: start; }
+.rates-grid { display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr); gap: clamp(18px, 2vw, 24px); align-items: start; max-width: 1000px; margin: 0 auto; }
 @media (max-width: 1000px) { .rates-grid { grid-template-columns: minmax(0, 1fr); max-width: 680px; margin: 0 auto; } }
 .rates-card {
   background: var(--surface); color: var(--black);
   border: var(--outline); border-radius: var(--radius);
-  padding: clamp(24px, 3vw, 36px); box-shadow: var(--shadow-md);
+  padding: clamp(20px, 2.2vw, 26px) clamp(20px, 2.4vw, 28px); box-shadow: var(--shadow-md);
 }
 .rates-table { width: 100%; border-collapse: collapse; }
 .rates-table thead th {
-  font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--ink);
-  text-align: left; padding: 0 0 10px; border-bottom: 1px solid rgba(18,18,18,.2);
+  font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--ink);
+  text-align: left; padding: 0 0 8px; border-bottom: 1px solid rgba(18,18,18,.2);
 }
 .rates-table thead th:last-child { text-align: right; }
-.rates-table tbody th, .rates-table td { padding: 18px 0; border-bottom: 1px solid rgba(18,18,18,.15); vertical-align: top; }
-.rates-table tbody th { text-align: left; font-size: 17px; font-weight: 800; line-height: 1.3; padding-right: 16px; }
+.rates-table tbody th, .rates-table td { padding: 12px 0; border-bottom: 1px solid rgba(18,18,18,.15); vertical-align: top; }
+.rates-table tbody th { text-align: left; font-size: 16px; font-weight: 800; line-height: 1.3; padding-right: 16px; }
 .rates-table td { text-align: right; white-space: nowrap; }
-.rates-table td strong { font-size: 24px; font-weight: 800; color: var(--red); letter-spacing: -.3px; }
+.rates-table td strong { font-size: 20px; font-weight: 800; color: var(--red); letter-spacing: -.3px; }
 .rate-tag {
   display: inline-block; vertical-align: 2px; margin-left: 6px;
   background: var(--navy); color: var(--white); font-size: 11px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase;
   padding: 3px 9px; border-radius: 999px; line-height: 1.3;
 }
 .rate-tag-once { background: var(--white); color: var(--navy); border: 1.5px solid var(--navy); }
-.rates-table small { display: block; font-size: 14px; font-weight: 400; color: var(--ink); margin-top: 3px; }
-.addons-title { font-size: 16px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin: 24px 0 12px; }
-.addons { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
-.addons li { background: var(--white); border: var(--outline); border-radius: 999px; padding: 6px 14px; font-size: 15px; font-weight: 700; }
+.rates-table small { display: block; font-size: 13px; font-weight: 400; color: var(--ink); margin-top: 2px; }
+.rates-table td { line-height: 1.3; }
+.rates-table td small { margin-top: 0; }
+.addons-title { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin: 16px 0 10px; }
+.addons { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.addons li { background: var(--white); border: var(--outline); border-radius: 999px; padding: 4px 10px; font-size: 13.5px; font-weight: 700; white-space: nowrap; }
 .addons strong { color: var(--red); }
-.rates-notes h3 { font-size: 20px; font-weight: 800; margin-bottom: 16px; }
+.rates-notes h3 { font-size: 18px; font-weight: 800; margin-bottom: 12px; }
+.rates-notes .included { gap: 5px; }
+.rates-notes .included li { font-size: 15px; line-height: 1.4; }
 /* Phones: stack each rate under its name rather than squeezing two columns */
 @media (max-width: 560px) {
   .rates-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -418,6 +441,14 @@ summary::-webkit-details-marker { display: none; }
 @media (max-width: 900px) { .ba-grid { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- Meet Shannon ---------- */
+/* Desktop: one screen tall under the sticky header (104px), with the card centred in the cream */
+@media (min-width: 1001px) {
+  #about {
+    min-height: calc(100vh - 104px); min-height: calc(100svh - 104px);
+    padding: 40px 0;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+}
 .about-card {
   background: var(--surface); border: var(--outline); border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
@@ -433,40 +464,77 @@ summary::-webkit-details-marker { display: none; }
 .signature { font-size: 34px; color: var(--red) !important; margin-top: 4px; }
 
 /* ---------- Reviews ---------- */
-.review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(28px, 3vw, 36px); }
-/* Desktop: the first (longer) review gets a wider column */
-@media (min-width: 900px) { .review-grid { grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); max-width: 1080px; margin: 0 auto; } }
-/* Desktop: reviews stack in the wide column, the QR card fills the narrow one beside them */
-@media (min-width: 900px) { .review-grid .qr-card { grid-column: 2; grid-row: 1 / span 2; } }
+/* Tighter than other sections so the heading, both reviews and the banner fit one screen
+   when you jump here from the nav */
+.reviews { padding: clamp(44px, 5vw, 60px) 0; }
+/* Desktop: the section is exactly one screen tall under the sticky header (104px) with its
+   content centred. Everything inside is sized from --u, which follows the window height (and is
+   held back on narrow windows): 14px on a small laptop up to 19px on a big monitor. The whole
+   section is roughly 43 x --u tall, which is where the 2.34vh comes from. */
+@media (min-width: 1001px) {
+  .reviews {
+    --u: clamp(14px, min(1.6vw, 2.34vh - 3.7px), 19px);
+    min-height: calc(100vh - 104px); min-height: calc(100svh - 104px);
+    padding: 24px 0;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .reviews .section-head { margin-bottom: calc(var(--u) * 1.25); }
+  .reviews .kicker-red { font-size: calc(var(--u) * 1.5); }
+  .reviews .section-title { font-size: calc(var(--u) * 2.5); }
+  .reviews .review-grid { font-size: var(--u); max-width: 68em; gap: 1.25em; }
+  .reviews .review-card { padding: 1.4em 1.75em; }
+  .reviews .review-card blockquote { font-size: 1em; }
+  .reviews .review-card blockquote::before { top: .5em; right: .6em; font-size: 2.9em; }
+  .reviews .review-card figcaption { font-size: .94em; }
+  .reviews .stars { font-size: 1.125em; }
+  .reviews .qr-inner { padding: .75em 1.5em; }
+  .reviews .qr-card h3 { font-size: 1.31em; }
+  .reviews .qr-copy p { font-size: .94em; }
+  .reviews .qr-placeholder { width: 4.6em; height: 4.6em; padding: 4px; }
+}
+/* Two reviews side by side, with the "leave a review" banner running underneath */
+.review-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(18px, 2vw, 22px); max-width: 1000px; margin: 0 auto; }
+@media (max-width: 760px) { .review-grid { grid-template-columns: minmax(0, 1fr); } }
 .review-card {
   margin: 0; background: var(--surface); border: var(--outline); border-radius: var(--radius);
-  padding: clamp(28px, 3.5vw, 44px); display: flex; flex-direction: column; gap: 16px; box-shadow: var(--shadow-sm);
+  position: relative; padding: clamp(20px, 2.3vw, 26px) clamp(22px, 2.6vw, 30px); display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow-sm);
 }
-.review-card blockquote { margin: 0; color: var(--ink); font-size: 18px; line-height: 1.7; }
-.review-card blockquote p + p { margin-top: 1em; }
-.review-card blockquote::before { content: "\201C"; display: block; font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: 64px; line-height: .5; color: var(--red); margin: 8px 0 6px; }
-.review-card figcaption { margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(18,18,18,.12); font-weight: 800; font-size: 16px; }
+.review-card blockquote { margin: 0; color: var(--ink); font-size: 16px; line-height: 1.55; }
+.review-card blockquote p + p { margin-top: .7em; }
+.review-card blockquote::before { content: "\201C"; position: absolute; top: clamp(20px, 2.3vw, 26px); right: clamp(22px, 2.6vw, 30px); font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: 46px; line-height: .8; color: var(--red); }
+/* The quote mark sits in the top corner beside the stars rather than taking a row of its own */
+.review-card figcaption { margin-top: auto; padding-top: 10px; border-top: 1px solid rgba(18,18,18,.12); font-weight: 800; font-size: 15px; }
 .review-source { font-weight: 400; color: var(--ink); }
 a.review-source { text-decoration: underline; text-underline-offset: 3px; }
 .review-link { display: block; margin-top: 2px; font-size: 14px; }
 @media (hover: hover) { a.review-source:hover { color: var(--red); } }
-.stars { color: var(--red); font-size: 22px; letter-spacing: 3px; }
+.stars { color: var(--red); font-size: 18px; letter-spacing: 2px; }
+/* Review banner: a slim polka-dot frame (one row of whole dots per edge) around a white strip
+   with the QR code, a short invitation and the button in a single row */
 .qr-card {
-  border: var(--outline); border-radius: var(--radius); padding: 18px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center;
+  grid-column: 1 / -1;
+  border: var(--outline); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow-sm);
+  background-image: radial-gradient(circle, rgba(255,255,255,.9) 3px, transparent 3.5px);
+  background-size: 18px 18px; background-repeat: round;
+}
+.qr-inner {
+  background: var(--white); border-radius: 10px; padding: 14px 24px;
+  display: flex; align-items: center; gap: 24px;
 }
 .qr-placeholder {
-  width: 150px; height: 150px; background: var(--white); border: var(--outline); border-radius: var(--radius-sm);
-  display: flex; align-items: center; justify-content: center; padding: 10px; color: var(--ink); font-size: 14px;
+  flex: none; width: 88px; height: 88px; background: var(--white); border: var(--outline); border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center; padding: 5px;
 }
 .qr-placeholder img { width: 100%; height: auto; image-rendering: pixelated; }
-.qr-inner {
-  width: 100%; height: 100%; background: var(--white); border-radius: 12px; padding: 28px 22px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center;
+.qr-copy { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.qr-card h3 { font-size: 21px; font-weight: 800; }
+.qr-copy p { color: var(--ink); font-size: 15px; line-height: 1.5; max-width: 46ch; }
+.qr-card .btn { flex: none; }
+@media (max-width: 760px) {
+  .qr-inner { flex-direction: column; text-align: center; padding: 22px 20px; gap: 14px; }
+  .qr-placeholder { width: 104px; height: 104px; }
+  .qr-copy { align-items: center; }
 }
-.qr-card h3 { font-size: 24px; font-weight: 800; }
-.qr-inner > p:not(.pill) { color: var(--ink); font-size: 16px; line-height: 1.5; max-width: 280px; }
-.qr-card .btn { margin-top: 6px; }
 .pill { background: var(--black); color: var(--white); font-size: 15px; font-weight: 700; padding: 6px 14px; border-radius: 999px; }
 
 /* ---------- What to expect ---------- */
