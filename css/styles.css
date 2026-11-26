@@ -192,14 +192,54 @@ summary::-webkit-details-marker { display: none; }
 .hero-kicker { font-size: 28px; color: var(--red); }
 .hero h1 { font-size: clamp(40px, 5.4vw, 66px); line-height: 1.04; font-weight: 800; letter-spacing: -1.5px; text-wrap: balance; }
 .lead { font-size: 22px; color: var(--ink); max-width: 540px; }
+/* Service-area ribbon: a classic folded banner. The red band sits in front; darker swallowtail
+   tails peek out behind each end, a little lower, with a small fold where the band wraps over them.
+   A soft highlight and a dashed white stitch line finish the band, with a star at each end (echoing
+   the review banner). The whole ribbon carries the black offset shadow used on the buttons.
+   Sizes come from custom properties so the phone version can scale everything down together. */
 .eyebrow {
-  align-self: flex-start; display: inline-flex; align-items: center; gap: 8px;
-  background: var(--white); border: var(--outline); border-radius: 999px; box-shadow: var(--shadow-sm);
-  padding: 6px 14px; font-size: 14px; font-weight: 700; color: var(--navy);
+  --band-h: 38px; --drop: 9px; --tail-w: 40px; --tail-out: 22px; --notch: 11px;
+  position: relative; align-self: flex-start; margin: 0;
+  padding: 0 var(--tail-out) var(--drop);
+  filter: drop-shadow(3px 3px 0 var(--black));
 }
-/* Phones: drop "House cleaning in" so the four areas fit on one line */
-@media (max-width: 760px) { .eyebrow-lead { display: none; } }
-.eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
+/* Tails: behind the band (the filter makes .eyebrow a stacking context, so z-index -1 stays inside it) */
+.eyebrow::before, .eyebrow::after {
+  content: ""; position: absolute; z-index: -1; top: var(--drop); width: var(--tail-w); height: var(--band-h);
+  background: var(--red-dark);
+}
+.eyebrow::before { left: 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, var(--notch) 50%); }
+.eyebrow::after { right: 0; clip-path: polygon(0 0, 100% 0, calc(100% - var(--notch)) 50%, 100% 100%, 0 100%); }
+.eyebrow-ribbon {
+  position: relative; display: flex; align-items: center; gap: 10px;
+  height: var(--band-h); padding: 0 20px;
+  background: linear-gradient(180deg, #DA2440 0%, var(--red) 55%, #B80E2A 100%);
+  color: var(--white);
+  font-size: 15px; font-weight: 800; letter-spacing: .2px; line-height: 1; white-space: nowrap;
+  text-shadow: 0 1px 0 rgba(0,0,0,.18);
+  outline: 1.5px dashed rgba(255,255,255,.5); outline-offset: -5px;
+}
+/* Stars at each end of the band */
+.eyebrow-ribbon::before, .eyebrow-ribbon::after {
+  content: ""; flex: none; width: 13px; height: 13px; background: var(--white);
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+/* Folds: small dark triangles under each end of the band, where it wraps over the tails */
+.eyebrow-text::before, .eyebrow-text::after {
+  content: ""; position: absolute; top: 100%; width: 0; height: 0; border-top: var(--drop) solid #6E0718;
+}
+.eyebrow-text::before { left: 0; border-left: var(--drop) solid transparent; }
+.eyebrow-text::after { right: 0; border-right: var(--drop) solid transparent; }
+/* Phones drop "& the Fraser Valley" visually so the ribbon stays on one line, keeping it for
+   screen readers. */
+@media (max-width: 760px) {
+  .eyebrow-tail { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+/* The smallest phones (320px wide): tighten the ribbon so its tails stay on screen */
+@media (max-width: 359px) {
+  .hero .eyebrow { --tail-w: 26px; --tail-out: 13px; }
+  .hero .eyebrow-ribbon { font-size: 11.5px; padding: 0 10px; gap: 5px; }
+}
 .hero-fun { font-size: 26px; line-height: 1.4; color: var(--red); }
 .hero .eyebrow { margin-bottom: 4px; }
 .hero .btn-row { padding-top: 12px; }
@@ -389,7 +429,7 @@ summary::-webkit-details-marker { display: none; }
    on narrow windows): 13px on a small laptop up to 17px on a big monitor. */
 @media (min-width: 1001px) {
   .rates {
-    --u: clamp(13px, min(1.35vw, 2.05vh - 3px), 17px);
+    --u: clamp(13px, min(1.35vw, 1.85vh - 2.5px), 17px);
     min-height: calc(100vh - 104px); min-height: calc(100svh - 104px);
     padding: 20px 0;
     display: flex; flex-direction: column; justify-content: center;
@@ -512,7 +552,7 @@ summary::-webkit-details-marker { display: none; }
    section is roughly 43 x --u tall, which is where the 2.34vh comes from. */
 @media (min-width: 1001px) {
   .reviews {
-    --u: clamp(14px, min(1.6vw, 2.34vh - 3.7px), 19px);
+    --u: clamp(14px, min(1.6vw, 2.1vh - 3.5px), 19px);
     min-height: calc(100vh - 104px); min-height: calc(100svh - 104px);
     padding: 24px 0;
     display: flex; flex-direction: column; justify-content: center;
@@ -553,9 +593,12 @@ a.review-source { text-decoration: underline; text-underline-offset: 3px; }
 .qr-card {
   grid-column: 1 / -1;
   border: var(--outline); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow-sm);
-  /* A frame of white stars (echoing the 5-star ratings) instead of the polka dots used elsewhere.
+  background-color: var(--navy);
+  /* A navy frame (matching the footer) of cream stars (the page's --cream) echoing the 5-star
+     ratings, instead of the red polka dots used elsewhere; the red button stands out better
+     against navy than red. Cream rather than pure white softens the stars and ties them to the page.
      The frame is one 22px tile thick and `round` fits a whole number of stars along every edge. */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='-6 -6.5 36 36'%3E%3Cpath d='M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21.2l1.6-7L2 9.5l7.1-.6z' fill='%23FFF' fill-opacity='.92'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='-6 -6.5 36 36'%3E%3Cpath d='M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21.2l1.6-7L2 9.5l7.1-.6z' fill='%23FFF8EC'/%3E%3C/svg%3E");
   background-size: 22px 22px; background-repeat: round;
 }
 .qr-inner {
@@ -594,6 +637,45 @@ a.review-source { text-decoration: underline; text-underline-offset: 3px; }
 .expect-card h3 { font-size: 20px; font-weight: 800; margin-top: 4px; }
 .expect-card p { color: var(--ink); font-size: 16px; }
 .expect-closing { text-align: center; font-size: clamp(26px, 3vw, 32px); line-height: 1.4; color: var(--red); margin-top: clamp(40px, 4.5vw, 56px); }
+
+/* ---------- One-screen sections (desktop) ---------- */
+/* The sections without their own menu link each fill exactly one screen under the sticky header
+   (104px) with their content centred, matching Rates and Reviews, so scrolling moves one section
+   at a time. Cards shrink on shorter screens so each section still fits. */
+@media (min-width: 1001px) {
+  #before-after, #keeping-up, #welcome, #little-things, #what-to-expect {
+    min-height: calc(100vh - 104px); min-height: calc(100svh - 104px);
+    /* Padding follows the window height, shrinking on short laptops so it never pushes a
+       section past one screen */
+    padding: clamp(24px, 10vh - 40px, 80px) 0;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  /* The text-only sections are short, so they get extra room above and below: the content sits
+     well clear of the sections either side, even when scrolling by hand */
+  #keeping-up, #welcome, #little-things { padding: clamp(40px, 20vh - 90px, 140px) 0; }
+  #what-to-expect .section-head, #before-after .ba-intro { margin-bottom: clamp(24px, 3.5vh, 44px); }
+
+  /* Before & After: the photos are portrait, so the pair of cards is narrowed on short screens
+     (their height follows their width) to keep the captions on screen */
+  .ba-grid { max-width: min(100%, calc(3.2 * (100vh - 400px) + 136px)); margin: 0 auto; gap: clamp(24px, 3vw, 40px); }
+  #before-after .section-title, #before-after .ba-intro { text-align: center; }
+
+  /* Keeping up: less padding and slightly smaller text on short screens */
+  .story-card { padding: clamp(28px, 5vh, 56px) clamp(32px, 4.5vw, 64px); gap: clamp(12px, 1.8vh, 18px); }
+  .story-card p:not(.story-sub) { font-size: clamp(16px, 2.2vh, 18px); }
+
+  /* What to expect: the four cards sit in one row instead of two by two, with smaller icons,
+     padding and text */
+  #what-to-expect .section-head h2 { font-size: clamp(30px, 4.6vh, 44px); }
+  .expect-intro { font-size: clamp(16px, 2.1vh, 18px); }
+  .expect-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 1200px; gap: clamp(16px, 1.6vw, 24px); }
+  .expect-card { padding: clamp(18px, 2.6vh, 26px) clamp(18px, 1.6vw, 24px); gap: 10px; }
+  .expect-icon { width: 46px; height: 46px; }
+  .expect-icon svg { width: 22px; height: 22px; }
+  .expect-card h3 { font-size: 18px; margin-top: 2px; }
+  .expect-card p { font-size: clamp(14px, 1.9vh, 15.5px); line-height: 1.5; }
+  .expect-closing { font-size: clamp(22px, 3.2vh, 30px); margin-top: clamp(20px, 3.5vh, 44px); }
+}
 
 /* ---------- FAQ ---------- */
 /* Desktop: at least one screen tall under the sticky header (104px), so jumping here shows the
@@ -820,7 +902,10 @@ a.review-source { text-decoration: underline; text-underline-offset: 3px; }
   .main-nav a { text-align: center; }
   .btn-row { justify-content: center; }
   .hero-copy { align-items: center; text-align: center; }
-  .eyebrow { align-self: center; font-size: 12px; padding: 5px 12px; gap: 6px; }
+  .eyebrow { align-self: center; }
+  .eyebrow { --band-h: 32px; --drop: 7px; --tail-w: 32px; --tail-out: 17px; --notch: 9px; }
+  .eyebrow-ribbon { font-size: 12.5px; padding: 0 14px; gap: 7px; outline-offset: -4px; }
+  .eyebrow-ribbon::before, .eyebrow-ribbon::after { width: 10px; height: 10px; }
   .lead { margin: 0 auto; }
   #before-after .section-title, .ba-intro { text-align: center; }
   .about-card { justify-content: center; }
